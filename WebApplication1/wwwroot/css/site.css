@@ -112,3 +112,19 @@ body {
   position: relative;
   z-index: 1;
 }
+.btn-greener
+{
+  color:#fff;
+  background-color: #8FBC8F;
+  border-color:#8FBC8F ;
+}
+.bg-gray
+{
+  background-color: #2F4F4F;
+}
+#container 
+{
+  height: 400px;
+  margin-top: 20px;
+}
+

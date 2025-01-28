@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "домашняя страница";
+    @model IEnumerable<Quest>
 }
 <img src="sitydark.jpg" class="header-image">
 <div class="content sticky-sm-top vstack gap-3 text-white" id="about">
@@ -24,23 +25,67 @@
         <h1 class="text-center mb-6 vstack gap-2">Цель</h1>
         <div class="row">
             <div class="col-md-6  p-4">
-                <img scr="search.png" class="img-fluid" alt="поикс"/>
+                <img src="search.png" class="img-fluid" alt="поикс" width="60px" height="60px"/>
                 <h3 class="mb-3">Разгадывание тайны древнего проклятия</h3>
                 <p class="text-muted">Готэм — это не просто город с высоким уровнем преступности. Он скрывает в себе следы древней силы, которая пробудилась, чтобы забрать свое. Участники должны исследовать старинные манускрипты, документы и устные легенды, чтобы собрать все части головоломки, ведущей к разгадке проклятия.</p>
 
             </div>
             <div class="col-md-6 p-4">
+                <img src="chest.png" class="img-fluid" alt="поикс" width="60px" height="60px"/>
                 <h3 class="mb-3">Сбор подсказок и артефактов</h3>
                 <p class="text-muted">По мере продвижения по квесту игрокам предстоит находить редкие артефакты, каждый из которых несет в себе кусочек важной информации. Эти артефакты помогут раскрыть истинные мотивы тех, кто стоит за мрачными событиями в городе.</p>
             </div>
             <div class="col-md-6 p-4">
+                <img src="quests.png" class="img-fluid" alt="поикс" width="60px" height="60px"/>
                 <h3 class="mb-3">Сопротивление влиянию тьмы</h3>
                 <p class="text-muted">Проклятие не дает просто так покинуть свою территорию. Время от времени участники будут сталкиваться с мистическими явлениями и ловушками, которые пытаются сбить их с пути или внушить страх. Здесь пригодятся хладнокровие и решительность, чтобы преодолеть эти испытания.</p>
             </div>
             <div class="col-md-6 p-4">
+                <img src="paper.png" class="img-fluid" alt="поикс" width="60px" height="60px"/>
                 <h3 class="mb-3">Работа с персонажами</h3>
                 <p class="text-muted">В городе есть загадочные фигуры — некоторые могут помочь, а другие, наоборот, скрывают свою истинную природу. Игрокам нужно взаимодействовать с ними, чтобы понять, кому доверять, а кого опасаться. Диалоги и встречи с этими персонажами будут не только добавлять напряжения, но и помогать (или мешать) на пути к финалу.</p>
             </div>
         </div>
-    </div>
+        
+        <div class="container" id="bron">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="row">
+                        @foreach (var quest in Model)
+                        {
+                            <div class="col-md">
+                                <div class="card bg-gray">
+                                    <img class="card-img-top" src="@quest.picture" alt="img"/>
+                                    <div class="card-body ">
+                                        <h5 class="card-title">@quest.Name</h5>
+                                        <p class="card-text">@quest.Description</p>
+                                        <p class="card-footer text-center">@quest.Price рублей</p>
+                                        <a asp-action="Create" asp-controller="Bron" class="btn btn-greener w-100">забронировать</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="container" id="Location">
+            <h3>Где находится: г.Тюмень,ул.Краснооктябрьсякая, д.14 </h3>
+            <div id="container" class="col-auto"/>
+        </div>
+        
+        </div>
 </div>
+<script src="https://mapgl.2gis.com/api/js/v1"></script>
+<script>
+    const map = new mapgl.Map('container', {
+        center: [65.520757324929, 57.185249419712626],
+        zoom: 13,
+        key: 'b4f95fc6-4869-47c9-89b3-be9578d60561',
+        style: 'c080bb6a-8134-4993-93a1-5b4d8c36a59b'
+    });
+    const marker = new mapgl.Marker(map, {
+        coordinates: [65.520757324929, 57.185249419712626],
+    });
+</script>
