@@ -1,12 +1,17 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.EntityFrameworkCore;
 using WebApplication1.Models;
+using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<BronContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// MongoDB config
+var mongoConnectionString = "mongodb+srv://rakeed:02022708xzp@horrstaf.re0hh.mongodb.net/?retryWrites=true&w=majority&appName=HorrStaf";
+var mongoDbName = "HorrStaf";
+builder.Services.AddSingleton(new MongoDbService(mongoConnectionString, mongoDbName));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

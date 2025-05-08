@@ -1,7 +1,8 @@
-﻿@{
+@{
     ViewData["Title"] = "домашняя страница";
     @model IEnumerable<Quest>
 }
+<script type="text/javascript" src="https://w1386212.yclients.com/widgetJS" charset="UTF-8"></script>
 <img src="sitydark.jpg" class="header-image">
 <div class="content sticky-sm-top vstack gap-3 text-white" id="about">
     <p class="scar_h1 text-lg-center p-3 " style="font-size: 24px; font-weight: bold;">Добро пожаловать в Готэм</p>
@@ -60,7 +61,25 @@
                                         <h5 class="card-title">@quest.Name</h5>
                                         <p class="card-text">@quest.Description</p>
                                         <p class="card-footer text-center">@quest.Price рублей</p>
-                                        <a asp-action="Create" asp-controller="Bron" class="btn btn-greener w-100">забронировать</a>
+                                        <a href="/Bron/Create?questId=@quest.Id" class="btn btn-greener w-100">забронировать</a>
+                                        @if (quest.Reviews != null && quest.Reviews.Count > 0)
+                                        {
+                                            <div class="reviews mt-3">
+                                                <h6>Отзывы:</h6>
+                                                @foreach (var review in quest.Reviews.Take(3))
+                                                {
+                                                    <div class="review border rounded p-2 mb-2">
+                                                        <div><b>@review.UserName</b> <span class="text-warning">@string.Concat(Enumerable.Repeat("★", review.Rating))</span></div>
+                                                        <div class="text-muted" style="font-size: 0.9em;">@review.Date</div>
+                                                        <div>@review.Text</div>
+                                                    </div>
+                                                }
+                                                @if (quest.Reviews.Count > 3)
+                                                {
+                                                    <div class="text-center text-secondary">...ещё @((int)quest.Reviews.Count - 3) отзыв(ов)</div>
+                                                }
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>

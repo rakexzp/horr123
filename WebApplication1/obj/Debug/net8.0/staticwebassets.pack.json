@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\kfilo\\RiderProjects\\horsite\\WebApplication1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\WebApplication1.bundle.scp.css",
-      "PackagePath": "staticwebassets\\WebApplication1.bundle.scp.css"
+      "PackagePath": "staticwebassets\\WebApplication1.yj6fvmmoe8.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\kfilo\\RiderProjects\\horsite\\WebApplication1\\wwwroot\\character.png",
@@ -275,6 +275,10 @@
     {
       "Id": "C:\\Users\\kfilo\\RiderProjects\\horsite\\WebApplication1\\wwwroot\\sitydark.jpg",
       "PackagePath": "staticwebassets\\sitydark.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssets.props",

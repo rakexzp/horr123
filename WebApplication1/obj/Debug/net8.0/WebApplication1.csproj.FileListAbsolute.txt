@@ -344,3 +344,6 @@ C:\Users\kfilo\RiderProjects\horsite\WebApplication1\bin\Debug\net8.0\runtimes\w
 C:\Users\kfilo\RiderProjects\horsite\WebApplication1\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\kfilo\RiderProjects\horsite\WebApplication1\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\kfilo\RiderProjects\horsite\WebApplication1\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\kfilo\RiderProjects\horsite\WebApplication1\bin\Debug\net8.0\WebApplication1.staticwebassets.endpoints.json
+C:\Users\kfilo\RiderProjects\horsite\WebApplication1\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\kfilo\RiderProjects\horsite\WebApplication1\obj\Debug\net8.0\staticwebassets\msbuild.WebApplication1.Microsoft.AspNetCore.StaticWebAssetEndpoints.props

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
 
 namespace WebApplication1.Models
 {
@@ -11,6 +13,27 @@ namespace WebApplication1.Models
         Type2
     }
 
+    public class Booking
+    {
+        public string Date { get; set; } // yyyy-MM-dd
+        public string Time { get; set; } // HH:mm
+        public string Name { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; } // новое поле для e-mail
+        public string Status { get; set; } // Booked, Canceled
+        public string PaymentStatus { get; set; } // Pending, Paid, Failed
+        public string UserId { get; set; }
+    }
+
+    public class Review
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public string Text { get; set; }
+        public int Rating { get; set; }
+        public string Date { get; set; } // yyyy-MM-dd
+    }
+
     public class Quest
     {
         [Key]
@@ -18,41 +41,9 @@ namespace WebApplication1.Models
         public string Name { get; set; }
         public QuestType Type { get; set; }
         public string Description { get; set; }
-        public ICollection<Booking> Bookings { get; set; }
-        
         public string picture { get; set; }
-        
         public int Price { get; set; }
-    }
-
-    public class Booking
-    {
-        [Key]
-        public int Id { get; set; }
-        
-        [ForeignKey("Quest")]
-        public int QuestId { get; set; }
-        public Quest Quest { get; set; }
-        
-        [ForeignKey("Date")]
-        public int DateId { get; set; }
-        public Date Date { get; set; }
-        
-        public BookingStatus Status { get; set; }
-    }
-
-    public class Date
-    {
-        [Key]
-        public int Id { get; set; }
-        public DateTime DateTimeValue { get; set; }
-        public TimeSpan Time { get; set; }
-        public ICollection<Booking> Bookings { get; set; }
-    }
-
-    public enum BookingStatus
-    {
-        Booked,
-        Canceled
+        public List<Booking> Bookings { get; set; }
+        public List<Review> Reviews { get; set; }
     }
 }

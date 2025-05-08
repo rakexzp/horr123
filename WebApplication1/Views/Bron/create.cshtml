@@ -1,0 +1,85 @@
+@using WebApplication1.Models
+@model BookingViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Бронирование: @Model.Quest?.Name</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <style>
+        .slot { margin: 2px; padding: 8px 12px; border-radius: 5px; border: 1px solid #888; cursor: pointer; display:inline-block;}
+        .slot.booked { background: #ffcccc; color: #a00; cursor: not-allowed; }
+        .slot.selected { background: #cce5ff; color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h2>Бронирование: @Model.Quest?.Name</h2>
+    @if (Model.Success)
+    {
+        <div class="alert alert-success">Бронирование успешно! Мы свяжемся с вами.</div>
+        @if (!string.IsNullOrEmpty(Model.SelectedTime))
+        {
+            <form method="post" action="/Bron/Pay">
+                <input type="hidden" name="questId" value="@Model.Quest?.Id" />
+                <input type="hidden" name="selectedDate" value="@Model.SelectedDate" />
+                <input type="hidden" name="selectedTime" value="@Model.SelectedTime" />
+                <input type="hidden" name="userId" value="@Model.UserId" />
+                <button type="submit" class="btn btn-success mt-3">Оплатить</button>
+            </form>
+        }
+    }
+    else
+    {
+        <form method="post">
+            <input type="hidden" name="questId" value="@Model.Quest?.Id" />
+            <label>Дата:</label>
+            <input id="datePicker" name="selectedDate" value="@Model.SelectedDate" />
+            <div id="slots">
+                <label>Время:</label><br />
+                @foreach (var slot in Model.AllSlots)
+                {
+                    var isBooked = Model.BookedSlots.Contains(slot);
+                    <span class="slot @(isBooked ? "booked" : "")" data-time="@slot">@slot</span>
+                }
+                <input type="hidden" name="selectedTime" id="selectedTime" />
+            </div>
+            <div>
+                <label>Имя:</label>
+                <input type="text" name="name" required value="@Model.Name" />
+            </div>
+            <div>
+                <label>Телефон:</label>
+                <input type="text" name="phone" required value="@Model.Phone" />
+            </div>
+            <div>
+                <label>E-mail:</label>
+                <input type="email" name="email" required value="@Model.Email" />
+            </div>
+            <button type="submit">Забронировать</button>
+        </form>
+    }
+    <script>
+        flatpickr("#datePicker", {
+            defaultDate: "@Model.SelectedDate",
+            minDate: "today",
+            onChange: function(selectedDates, dateStr) {
+                window.location = `?questId=@Model.Quest.Id&date=${dateStr}`;
+            }
+        });
+        // Выбор времени
+        document.querySelectorAll('.slot').forEach(function(el) {
+            if (!el.classList.contains('booked')) {
+                el.addEventListener('click', function() {
+                    document.querySelectorAll('.slot').forEach(s => s.classList.remove('selected'));
+                    el.classList.add('selected');
+                    document.getElementById('selectedTime').value = el.getAttribute('data-time');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

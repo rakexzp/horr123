@@ -11,6 +11,13 @@ window.addEventListener('scroll', () => {
         headerImage.style.backgroundColor = 'transparent';
     }
 });
+const widget = new YC.Widget({
+    apiKey: '1386215', // your API key
+    container: document.getElementById('yc-widget'),
+    params: {
+        // optional parameters, e.g. language, services, etc.
+    }
+});
 $('a[href="#index-needle"]').on('click', function() {
     var target = $(this).attr('href');
     $('html, body').animate({
@@ -18,3 +25,12 @@ $('a[href="#index-needle"]').on('click', function() {
     }, 1000);
 });
 // Write your JavaScript code.
+const widget = new YC.Widget({
+    apiKey: '1386215',
+    container: document.getElementById('yc-widget'),
+    params: {
+        language: 'ru', // set language to Russian
+        services: ['service1', 'service2'], // show only specific services
+        // ... other parameters ...
+    }
+});
