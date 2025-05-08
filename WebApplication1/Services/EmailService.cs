@@ -1,0 +1,30 @@
+using System.Net;
+using System.Net.Mail;
+
+namespace WebApplication1.Services
+{
+    public class EmailService
+    {
+        private readonly string _smtpHost = "connect.smtp.bz";
+        private readonly int _smtpPort = 2525;
+        private readonly string _smtpUser = "crossxzp@yandex.ru";
+        private readonly string _smtpPass = "263aBM3PQhsp";
+        private readonly string _from = "crossxzp@yandex.ru";
+
+        public void SendReviewRequest(string to, string questName, string reviewLink)
+        {
+            var msg = new MailMessage(_from, to)
+            {
+                Subject = "Оцените ваш квест!",
+                Body = $"Спасибо за бронирование квеста '{questName}'!\nПожалуйста, оцените нас: {reviewLink}",
+                IsBodyHtml = false
+            };
+            using var client = new SmtpClient(_smtpHost, _smtpPort)
+            {
+                Credentials = new NetworkCredential(_smtpUser, _smtpPass),
+                EnableSsl = true
+            };
+            client.Send(msg);
+        }
+    }
+}

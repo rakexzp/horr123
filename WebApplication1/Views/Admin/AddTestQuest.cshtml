@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Добавить тестовый квест";
+}
+<h2>Добавить тестовый квест</h2>
+@if (ViewBag.Success == true)
+{
+    <div class="alert alert-success">Квест успешно добавлен!</div>
+}
+else
+{
+    <form method="post">
+        <label>Название:</label>
+        <input type="text" name="name" required />
+        <br />
+        <label>Описание:</label>
+        <textarea name="description" required></textarea>
+        <br />
+        <label>Тип:</label>
+        <select name="type">
+            <option value="Type1">Type1</option>
+            <option value="Type2">Type2</option>
+        </select>
+        <br />
+        <label>URL картинки:</label>
+        <input type="text" name="picture" required />
+        <br />
+        <label>Цена:</label>
+        <input type="number" name="price" required />
+        <br />
+        <label>Пароль администратора:</label>
+        <input type="password" name="password" required />
+        <button type="submit">Добавить квест</button>
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+    </form>
+}
