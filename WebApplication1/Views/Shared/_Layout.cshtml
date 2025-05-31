@@ -1,13 +1,79 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title  >@ViewData["Title"] - Готэм: Тени Греха</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true"/>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewData["Title"] - Хорор-квест: Тени Греха</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" />
+    <style>
+        html { scroll-behavior: smooth; }
+        img { max-width: 100%; height: auto; }
+        .container, .container-fluid, .row, .col-md-6, .col-12 { box-sizing: border-box; }
+        html, body {
+            background: url('sitydark.jpg') center center / cover no-repeat scroll !important;
+            min-height: 100vh;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body > .main-wrapper, body > .content, body > main {
+            min-height: 100vh;
+        }
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        a, a:visited, a:active { color: #fff !important; text-decoration: underline; }
+        a:hover { color: #ccc !important; }
+        body, .content, .container, .container-fluid, .row, .col-md-6, .col-12, p, h1, h2, h3, h4, h5, h6 {
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+        ::selection {
+            background: #222 !important;
+            color: #fff !important;
+        }
+        .content, .container, .container-fluid {
+            background: #232d2f !important;
+        }
+        .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+            color: #fff !important;
+        }
+        @@media (max-width: 768px) {
+            html, body {
+                background: url('sitydark_mobile.png') center center / 100vw 100vh no-repeat scroll !important;
+                min-height: 100vh;
+                height: 100vh;
+                width: 100vw;
+                overflow-x: hidden;
+            }
+            body > .main-wrapper, body > .content, body > main {
+                min-height: 100vh;
+            }
+            .content, .container, .container-fluid {
+                margin-top: 10px !important;
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+        }
+        header, nav, .navbar, .fixed-top {
+            z-index: 1050;
+            position: relative;
+        }
+        .content, main, .container, .container-fluid {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body class="d-flex flex-column">
 <header class="fixed-top">
@@ -28,39 +94,12 @@
         </ul>
     </nav>
 </header>
-<div class="container">
+<div class="container main-wrapper">
     <main>
         @RenderBody()
     </main>
-</div>
-
-<footer class="curtain-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h5>О нас</h5>
-                <ul>
-                    <li><a href="#">Команда</a></li>
-                    <li><a href="#">Контакты</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Ссылки</h5>
-                <ul>
-                    <li><a href="#">Главная</a></li>
-                    <li><a href="#about">Об игре</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h5>Социальные сети</h5>
-                <ul>
-                    <li><a href="#">Tiktok</a></li>
-                    <li><a href="https://vk.com/club228107434">VK</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
-</footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

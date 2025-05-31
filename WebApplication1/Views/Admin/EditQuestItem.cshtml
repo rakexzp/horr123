@@ -1,0 +1,34 @@
+@model WebApplication1.Models.Quest
+@using Microsoft.AspNetCore.Mvc.Rendering
+@{
+    ViewData["Title"] = "Редактировать квест";
+    var typeList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "Type1", Value = "Type1", Selected = Model.Type == WebApplication1.Models.QuestType.Type1 },
+        new SelectListItem { Text = "Type2", Value = "Type2", Selected = Model.Type == WebApplication1.Models.QuestType.Type2 }
+    };
+}
+<h2>Редактировать квест</h2>
+@if (ViewBag.Success == true)
+{
+    <div class="alert alert-success">Квест успешно обновлён!</div>
+}
+<form method="post">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <label>Название:</label>
+    <input type="text" name="name" value="@Model.Name" required />
+    <br />
+    <label>Описание:</label>
+    <textarea name="description" required>@Model.Description</textarea>
+    <br />
+    <label>Тип:</label>
+    @Html.DropDownList("type", typeList, new { @class = "form-control" })
+    <br />
+    <label>URL картинки:</label>
+    <input type="text" name="picture" value="@Model.picture" required />
+    <br />
+    <label>Цена:</label>
+    <input type="number" name="price" value="@Model.Price" required />
+    <br />
+    <button type="submit">Сохранить изменения</button>
+</form>

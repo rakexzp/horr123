@@ -3,9 +3,9 @@
     @model IEnumerable<Quest>
 }
 <script type="text/javascript" src="https://w1386212.yclients.com/widgetJS" charset="UTF-8"></script>
-<img src="sitydark.jpg" class="header-image">
-<div class="content sticky-sm-top vstack gap-3 text-white" id="about">
-    <p class="scar_h1 text-lg-center p-3 " style="font-size: 24px; font-weight: bold;">Добро пожаловать в Готэм</p>
+<img src="sitydark.jpg" class="header-image d-none d-md-block">
+<div class="content sticky-sm-top vstack gap-3 text-white" id="about" style="margin-top: 0; padding-top: 2rem;">
+    <p class="scar_h1 text-lg-center p-3 " style="font-size: 24px; font-weight: bold; margin-top: 0;">Добро пожаловать в Готэм</p>
     <p style="font-size: 18px; color: #ccc;">Город, где каждый угол скрывает свои секреты, а тьма обволакивает каждое здание. В этом квесте вы почувствуете себя частью пугающего мира, где опасность может подстерегать за каждой дверью, а каждый ваш шаг будет проверкой на смелость и сообразительность.</p>
     <p class="scar_h1 text-lg-center p-3" style="font-size: 24px; font-weight: bold;">Сюжет</p>
     <p style="font-size: 18px; color: #ccc;">Готэм погружается в хаос. Слухи о таинственных исчезновениях множатся, и жители боятся выходить на улицы после заката. Древние легенды о проклятии, наложенном на город, начинают казаться реальностью. Вы — группа сыщиков, вынужденных расследовать эти события и столкнуться с кошмарами, о которых даже не могли подумать.</p>
@@ -107,4 +107,21 @@
     const marker = new mapgl.Marker(map, {
         coordinates: [65.520757324929, 57.185249419712626],
     });
+</script>
+<!-- Кнопка "Наверх" -->
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="btnUp" style="position:fixed;bottom:32px;right:20px;z-index:1000;display:none; background: #232d2f; color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: background 0.2s;" class="btn-up-custom">
+    <svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='white' viewBox='0 0 16 16' style="display:block; margin:auto;">
+        <path d='M8 3.293l4.646 4.647-.708.707L8 4.707l-3.938 3.94-.708-.707L8 3.293z'/>
+    </svg>
+</button>
+<script>
+window.addEventListener('scroll', function() {
+    document.getElementById('btnUp').style.display = (window.scrollY > 300) ? 'block' : 'none';
+});
+document.getElementById('btnUp').addEventListener('touchstart', function(e) {
+    this.style.background = '#444';
+});
+document.getElementById('btnUp').addEventListener('touchend', function(e) {
+    this.style.background = '#232d2f';
+});
 </script>

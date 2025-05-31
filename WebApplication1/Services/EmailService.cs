@@ -9,7 +9,7 @@ namespace WebApplication1.Services
         private readonly int _smtpPort = 2525;
         private readonly string _smtpUser = "crossxzp@yandex.ru";
         private readonly string _smtpPass = "263aBM3PQhsp";
-        private readonly string _from = "crossxzp@yandex.ru";
+        private readonly string _from = "info@horrgotmn.ru";
 
         public void SendReviewRequest(string to, string questName, string reviewLink)
         {

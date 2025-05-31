@@ -58,5 +58,17 @@ namespace WebApplication1.Services
             var update = Builders<Quest>.Update.Set("Bookings.$.PaymentStatus", newStatus);
             await _quests.UpdateOneAsync(filter, update);
         }
+
+        // Обновить квест
+        public async Task UpdateQuestAsync(Quest quest)
+        {
+            await _quests.ReplaceOneAsync(q => q.Id == quest.Id, quest);
+        }
+
+        // Удалить квест
+        public async Task DeleteQuestAsync(int id)
+        {
+            await _quests.DeleteOneAsync(q => q.Id == id);
+        }
     }
 }

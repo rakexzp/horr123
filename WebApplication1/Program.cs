@@ -4,8 +4,9 @@ using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container.   
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
 
 // MongoDB config
 var mongoConnectionString = "mongodb+srv://rakeed:02022708xzp@horrstaf.re0hh.mongodb.net/?retryWrites=true&w=majority&appName=HorrStaf";
@@ -26,6 +27,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 

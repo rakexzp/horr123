@@ -1,0 +1,102 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="320" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewData["Title"] - Хорор-квест: Тени Греха</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" />
+    <style>
+        html { scroll-behavior: smooth; }
+        img { max-width: 100%; height: auto; }
+        .container, .container-fluid, .row, .col-md-6, .col-12 { box-sizing: border-box; }
+        html, body {
+            background: url('sitydark.jpg') center center / cover no-repeat fixed !important;
+            min-height: 100vh;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .main-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1 0 auto;
+        }
+        a, a:visited, a:active { color: #fff !important; text-decoration: underline; }
+        a:hover { color: #ccc !important; }
+        body, .content, .container, .container-fluid, .row, .col-md-6, .col-12, p, h1, h2, h3, h4, h5, h6 {
+            color: #fff !important;
+            opacity: 1 !important;
+        }
+        ::selection {
+            background: #222 !important;
+            color: #fff !important;
+        }
+        .content, .container, .container-fluid {
+            background: #232d2f !important;
+        }
+        .content p, .content h1, .content h2, .content h3, .content h4, .content h5, .content h6 {
+            color: #fff !important;
+        }
+        @@media (max-width: 768px) {
+            html, body {
+                background: url('~/sitydark.jpg') center center / cover no-repeat fixed !important;
+            }
+            .header-image { width: 100vw !important; height: auto !important; }
+            .scar_h1, h1, h2, h3 { font-size: 1.2em !important; }
+            .p-4, .p-5 { padding: 1rem !important; }
+            .content, main, .container, .container-fluid {
+                margin-top: 10px !important;
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+        }
+        header, nav, .navbar, .fixed-top {
+            z-index: 1050;
+            position: relative;
+        }
+        .content, main, .container, .container-fluid {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column">
+<header class="fixed-top">
+    <nav class="navbar navbar-expand-lg  navbar-dark bg-transparent fixed-top">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="navbar-brand" asp-action="Index" asp-controller="Bron">Готэм: Тени Греха</a>
+              
+            <li class="nav-item active">
+                <a class="nav-link" data-target="#about" href="#about">Об игре</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#bron">Забронировать</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#Location">Где находится</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="container main-wrapper">
+    <main>
+        @RenderBody()
+    </main>
+    </div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
