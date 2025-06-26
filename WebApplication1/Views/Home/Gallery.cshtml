@@ -1,0 +1,51 @@
+@model List<string>
+
+@{
+    ViewData["Title"] = "Галерея";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Галерея</h1>
+    
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var imagePath in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="@imagePath" class="card-img-top img-fluid gallery-image" alt="Gallery Image" style="height: 250px; object-fit: cover;">
+                        <div class="card-body text-center">
+                            <a href="@imagePath" class="btn btn-primary mt-2" target="_blank">Открыть</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <p>Изображения не найдены.</p>
+                    @if (ViewBag.WebRootPath != null)
+                    {
+                        <hr>
+                        <small class="mb-0">Путь поиска: <code>@ViewBag.WebRootPath.</code></small>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        .gallery-image {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery-image:hover {
+            transform: scale(1.03);
+        }
+    </style>
+}

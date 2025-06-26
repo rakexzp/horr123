@@ -1,0 +1,92 @@
+@model WebApplication1.Models.Review
+@{
+    ViewBag.Title = "Оставить отзыв";
+}
+<div class="container mt-5">
+    <div class="card bg-dark text-light shadow-lg mx-auto" style="max-width: 500px; border-radius: 1.5rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Оставить отзыв для квеста: @ViewBag.QuestName</h2>
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label">Ваше имя</label>
+                    <input type="text" name="userName" class="form-control bg-secondary text-light" value="@Model.UserName" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Оценка</label>
+                    <div id="star-rating" class="mb-2">
+                        @for (int i = 1; i <= 5; i++) {
+                            <span class="star" data-value="@i">&#9733;</span>
+                        }
+                    </div>
+                    <input type="hidden" name="rating" id="rating-value" value="5" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Текст отзыва</label>
+                    <textarea name="text" class="form-control bg-secondary text-light" rows="3">@Model.Text</textarea>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Отправить отзыв</button>
+            </form>
+        </div>
+    </div>
+</div>
+<style>
+    ПРИЛОЖЕНИЕ А
+    Код Почтовой службы
+    html, body {
+        height: 100%;
+        min-height: 100vh;
+    }
+    body {
+        background: #232323;
+        background-image: url('/sitydark.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .container {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #star-rating .star {
+        font-size: 2.5em;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+</style>
+<script>
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating-value');
+    let currentRating = 5;
+    stars.forEach(star => {
+        star.addEventListener('mouseover', function() {
+            const val = parseInt(this.getAttribute('data-value'));
+            highlightStars(val);
+        });
+        star.addEventListener('mouseout', function() {
+            highlightStars(currentRating);
+        });
+        star.addEventListener('click', function() {
+            currentRating = parseInt(this.getAttribute('data-value'));
+            ratingInput.value = currentRating;
+            highlightStars(currentRating);
+        });
+    });
+    function highlightStars(rating) {
+        stars.forEach(star => {
+            if (parseInt(star.getAttribute('data-value')) <= rating) {
+                star.style.color = '#ffc107';
+            } else {
+                star.style.color = '#444';
+            }
+        });
+    }
+    highlightStars(currentRating);
+</script>
